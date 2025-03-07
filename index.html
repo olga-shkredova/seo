@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Телефонный справочник</title>
+    <meta name="description" content="Онлайн телефонный справочник для поиска и добавления контактов. Удобный и быстрый доступ к контактам.">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: silver;
+            color: black;
+        }
+        header {
+            background: darkcyan;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 5px 0;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; 
+        }
+        section.active {
+            display: block; 
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        footer {
+            background: darkcyan;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input, button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
+        .contact-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .faq-item h3 {
+            margin-bottom: 10px;
+        }
+        .tips {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Телефонный справочник</h1>
+        <nav>
+            <a data-page="home">Главная</a>
+            <a data-page="search">Поиск контактов</a>
+            <a data-page="add-contact">Добавить контакт</a>
+            <a data-page="about">О нас</a>
+            <a data-page="faq">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Главная страница -->
+    <section id="home" class="active">
+        <h2>Добро пожаловать в телефонный справочник!</h2>
+        <p>Здесь вы можете найти контакты или добавить новые. Наш справочник удобен и прост в использовании.</p>
+        <img src="https://www.smartaids.ru/upload/iblock/46c/46cad32a5f16d8906158b92dae1fe2f7.jpg" alt="Телефонный справочник">
+        <h2>Последние добавленные контакты</h2>
+        <ul class="contact-list">
+            <li>Иван Иванов: +7 (123) 456-78-90</li>
+            <li>Мария Петрова: +7 (987) 654-32-10</li>
+            <li>Алексей Сидоров: +7 (111) 222-33-44</li>
+            <li>Ольга Кузнецова: +7 (555) 123-45-67</li>
+            <li>Дмитрий Смирнов: +7 (777) 888-99-00</li>
+        </ul>
+        <div class="tips">
+            <h3>Совет:</h3>
+            <p>Используйте поиск, чтобы быстро найти нужный контакт. Вы можете искать как по имени, так и по номеру телефона.</p>
+        </div>
+    </section>
+
+    <!-- Страница поиска -->
+    <section id="search">
+        <h2>Найти контакт</h2>
+        <form action="/search" method="get">
+            <input type="text" name="query" placeholder="Введите имя или номер" required>
+            <button type="submit">Найти</button>
+        </form>
+        <h3>Примеры поиска:</h3>
+        <ul>
+            <li>Поиск по имени: "Иван"</li>
+            <li>Поиск по номеру: "+7 (123)"</li>
+        </ul>
+        <div class="tips">
+            <h3>Совет:</h3>
+            <p>Если вы не помните полное имя, попробуйте ввести часть имени или номер телефона.</p>
+        </div>
+    </section>
+
+    <!-- Страница добавления контакта -->
+    <section id="add-contact">
+        <h2>Добавьте новый контакт</h2>
+        <form action="/add-contact" method="post">
+            <input type="text" name="name" placeholder="Имя" required>
+            <input type="tel" name="phone" placeholder="Телефон" required>
+            <button type="submit">Добавить</button>
+        </form>
+        <h3>Правила добавления:</h3>
+        <ul>
+            <li>Имя должно быть написано кириллицей.</li>
+            <li>Номер телефона должен начинаться с +7.</li>
+        </ul>
+        <div class="tips">
+            <h3>Совет:</h3>
+            <p>Убедитесь, что номер телефона введен корректно, чтобы другие пользователи могли легко найти контакт.</p>
+        </div>
+    </section>
+
+    <!-- Страница "О нас" -->
+    <section id="about">
+        <h2>О нашем проекте</h2>
+        <p>Телефонный справочник был создан в 2023 году с целью сделать поиск контактов быстрым и удобным. Мы стремимся к простоте и доступности.</p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8nv9IzOlHi66dspqv688QD-Fc9eV9sr3M7A&s" alt="О нашем проекте">
+        <h3>Наша команда:</h3>
+        <ul>
+            <li>Алексей — разработчик</li>
+            <li>Мария — дизайнер</li>
+            <li>Иван — менеджер</li>
+        </ul>
+        <div class="tips">
+            <h3>Совет:</h3>
+            <p>Если у вас есть предложения по улучшению сервиса, свяжитесь с нами через раздел "Контакты".</p>
+        </div>
+    </section>
+
+    <!-- Страница FAQ -->
+    <section id="faq">
+        <h2>Часто задаваемые вопросы</h2>
+        <div class="faq-item">
+            <h3>Как добавить контакт?</h3>
+            <p>Перейдите на страницу "Добавить контакт", введите имя и номер телефона, затем нажмите "Добавить".</p>
+        </div>
+        <div class="faq-item">
+            <h3>Как искать контакты?</h3>
+            <p>На странице "Поиск контактов" введите имя или номер телефона и нажмите "Найти".</p>
+        </div>
+        <div class="faq-item">
+            <h3>Можно ли редактировать контакты?</h3>
+            <p>В текущей версии редактирование контактов недоступно. Мы работаем над этой функцией.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Как удалить контакт?</h3>
+            <p>Сейчас удаление контактов возможно только через администратора. Свяжитесь с нами для уточнения.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2023 Телефонный справочник. Все права защищены.</p>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const targetPage = link.getAttribute("data-page");
+
+                sections.forEach(section => {
+                    section.classList.remove("active");
+                });
+
+                document.getElementById(targetPage).classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>
